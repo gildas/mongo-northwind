@@ -28,5 +28,4 @@ ENV  PATH ${APP_ROOT}/node_modules/.bin:$PATH
 COPY . ${APP_ROOT}/
 RUN yarn run build
 
-CMD [ "npm", "start" ]
-
+CMD [ "yarn", "start" ]
