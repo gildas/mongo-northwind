@@ -1,5 +1,6 @@
 const express = require('express')
 const consola = require('consola')
+// @ts-ignore
 const { Nuxt, Builder } = require('nuxt')
 const app = express()
 
@@ -29,7 +30,8 @@ async function start() {
 
   // Listen the server
   app.listen(port, host)
-  consola.ready({
+  // @ts-ignore
+  consola.info({
     message: `Server listening on http://${host}:${port}`,
     badge: true
   })

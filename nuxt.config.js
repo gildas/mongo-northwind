@@ -1,5 +1,5 @@
 // @ts-ignore
-const pkg = require('./package')
+const app_info = require('./package')
 
 
 module.exports = {
@@ -9,11 +9,11 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: app_info.name,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: app_info.description }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -42,6 +42,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    ['~/modules/logger', { app_info, filters: ['!^\/healthz.*'] }],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://bootstrap-vue.js.org/docs/
