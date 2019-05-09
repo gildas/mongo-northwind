@@ -8,8 +8,8 @@ ENV APP_ROOT /usr/local/src
 #set our node environment
 ARG NODE_ENV=production
 ENV NODE_ENV ${NODE_ENV}
-ARG MONGODB=localhost
-ENV MONGODB ${MONGODB}
+ARG DB_HOST=localhost
+ENV DB_HOST ${MONGODB}
 ARG PORT=3000
 ENV PORT ${PORT}
 

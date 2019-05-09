@@ -10,7 +10,7 @@ const serializers = {
     const query   = JSON.stringify(data.query   || {})
     const options = JSON.stringify(data.options || {})
 
-    return `db.${data.coll}.${data.method}(${query}, ${options});`
+    return `db.${data.collection}.${data.method}(${query}, ${options});`
   },
 }
 
