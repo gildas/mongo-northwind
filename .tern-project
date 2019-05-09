@@ -1,0 +1,8 @@
+{
+  "libs:{
+    "net"
+  },
+  "plugins: {
+    "node": {}
+  }
+}

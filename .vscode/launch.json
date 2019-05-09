@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Server",
             "runtimeExecutable": "yarn",
-            "runtimeArgs": ["run", "dev-debug"],
+            "runtimeArgs": ["run", "debug"],
             "port": 9229
         },
         {
