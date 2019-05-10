@@ -1,0 +1,50 @@
+FROM node:10-alpine as builder
+
+ENV APP_ROOT /usr/local/src
+WORKDIR ${APP_ROOT}
+
+#set our node environment
+ARG NODE_ENV=production
+ENV NODE_ENV ${NODE_ENV}
+
+# Install app dependencies
+RUN apk update && apk upgrade && apk add --update git curl && \
+    curl -#L https://github.com/tj/node-prune/releases/download/v1.0.1/node-prune_1.0.1_linux_amd64.tar.gz | tar -xvzf- && \
+    mv -v node-prune /usr/local/bin && rm -rvf * && \
+    echo "yarn cache clean && node-prune" > /usr/local/bin/node-clean && chmod +x /usr/local/bin/node-clean
+ADD package.json yarn.lock ./
+RUN yarn --frozen-lockfile --non-interactive && node-clean
+
+# Install application, dependencies first
+COPY . ${APP_ROOT}/
+ENV  PATH ${APP_ROOT}/node_modules/.bin:$PATH
+RUN  yarn install
+RUN yarn run build
+
+### Now the real image
+FROM node:10-alpine
+LABEL vendor="GENESYS, Inc."
+LABEL maintainer="Gildas Cherruel <gildas.cherruel@genesys.com>"
+
+ENV APP_ROOT /usr/local/src
+WORKDIR ${APP_ROOT}
+
+#set our node environment
+ARG NODE_ENV=production
+ENV NODE_ENV ${NODE_ENV}
+ARG DB_HOST=localhost
+ENV DB_HOST ${MONGODB}
+ARG PORT=3000
+ENV PORT ${PORT}
+
+# Expose web port
+EXPOSE ${PORT}
+
+# Install application from the builder
+COPY package.json yarn.lock nuxt.config.js ${APP_ROOT}/
+COPY --from=builder ${APP_ROOT}/node_modules ${APP_ROOT}/node_modules/
+COPY --from=builder ${APP_ROOT}/.nuxt        ${APP_ROOT}/.nuxt/
+COPY --from=builder ${APP_ROOT}/static       ${APP_ROOT}/static
+ENV  PATH ${APP_ROOT}/node_modules/.bin:$PATH
+
+CMD [ "yarn", "start" ]
