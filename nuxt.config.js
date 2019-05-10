@@ -27,6 +27,8 @@ module.exports = {
     ]
   },
 
+  is_dev: process.env.NODE_ENV !== 'production',
+
   /*
   ** Customize the progress-bar color
   */
