@@ -1,9 +1,9 @@
-#FROM node:10-alpine
-FROM node:10
+FROM node:10-alpine
 LABEL vendor="GENESYS, Inc."
 LABEL maintainer="Gildas Cherruel <gildas.cherruel@genesys.com>"
 
 ENV APP_ROOT /usr/local/src
+WORKDIR ${APP_ROOT}
 
 #set our node environment
 ARG NODE_ENV=production
@@ -16,16 +16,10 @@ ENV PORT ${PORT}
 # Expose web port
 EXPOSE ${PORT}
 
-# Install app dependencies
-#RUN apk update && apk upgrade && apk add git
-
 # Install application, dependencies first
-WORKDIR ${APP_ROOT}
-COPY package.json yarn.lock ${APP_ROOT}/
-RUN  yarn install
-ENV  PATH ${APP_ROOT}/node_modules/.bin:$PATH
-
 COPY . ${APP_ROOT}/
-RUN yarn run build
+ENV  PATH ${APP_ROOT}/node_modules/.bin:$PATH
+RUN  yarn install
+RUN  yarn run build
 
 CMD [ "yarn", "start" ]
