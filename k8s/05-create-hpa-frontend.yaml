@@ -1,0 +1,18 @@
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2beta1
+metadata:
+  name: northwind
+  labels:
+    app: northwind
+spec:
+  scaleTargetRef:
+    kind:       Deployment
+    apiVersion: apps/v1
+    name:       website
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 50
