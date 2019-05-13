@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: northwind
+spec:
+  type: LoadBalancer
+  selector:
+    app:  northwind
+    tier: frontend
+  ports:
+    - port: 80
+      targetPort: 3000

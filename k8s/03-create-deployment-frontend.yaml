@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: website
+  labels:
+    app: northwind
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: northwind
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: northwind
+        tier: frontend
+    spec:
+      containers:
+        - name: website
+          image: gildas/mongo-northwind:0.0.1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DB_HOST
+              value: mongodb
+          ports:
+            - containerPort: 3000
+              protocol: TCP
