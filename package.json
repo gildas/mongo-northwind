@@ -7,7 +7,7 @@
   "repository": "github:gildas/mongo-northwind",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --exec \"node_modules/.bin/nuxt\" --watch server --watch api --watch models",
+    "dev": "cross-env NODE_ENV=development nodemon --inspect --exec \"node_modules/.bin/nuxt\" --watch server --watch api --watch models",
     "debug": "cross-env NODE_ENV=development node --inspect node_modules/.bin/nuxt",
     "build": "cross-env BUILDING=1 nuxt build",
     "start": "cross-env NODE_ENV=production node -r esm server/index.js",
