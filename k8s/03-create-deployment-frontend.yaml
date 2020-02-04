@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: website
-          image: gildas/mongo-northwind:0.0.1
+          image: gildas/mongo-northwind:0.5.1
           imagePullPolicy: IfNotPresent
           env:
             - name: DB_HOST
