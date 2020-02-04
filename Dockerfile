@@ -24,4 +24,6 @@ ENV  PATH ${APP_ROOT}/node_modules/.bin:$PATH
 RUN  yarn install
 RUN  yarn run build
 
+USER node
+
 CMD [ "yarn", "start" ]
