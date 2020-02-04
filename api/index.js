@@ -12,6 +12,7 @@ import error_handler    from './_error-handler'
 import { add_routes as add_routes_categories } from './categories'
 import { add_routes as add_routes_products   } from './products'
 import { add_routes as add_routes_regions    } from './regions'
+import { add_routes as add_routes_shippers   } from './shippers'
 
 process.on('uncaughtException', pino.final(logger, (err, finalLogger) => {
   finalLogger.error(err, 'uncaughtException')
@@ -61,6 +62,7 @@ export function create_api({ db_url }) {
   add_routes_categories({ router })
   add_routes_products({ router })
   add_routes_regions({ router })
+  add_routes_shippers({ router })
 
   router.use(error_handler)
 
