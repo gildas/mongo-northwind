@@ -1,43 +1,20 @@
 <template>
-  <section class="container">
+  <b-container class="centered-container">
     <div>
-      <logo />
       <h1 class="title">
-        mongo-northwind
+        Mongo Northwind
       </h1>
       <h2 class="subtitle">
-        My perfect Nuxt.js project
+        Docker/Kubernetes based app
       </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
     </div>
-  </section>
+  </b-container>
 </template>
 
-<script>
-import Logo from '~/components/Logo.vue'
-
-export default {
-  components: {
-    Logo
-  }
-}
-</script>
-
 <style>
-.container {
+.centered-container {
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,9 +37,5 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>
