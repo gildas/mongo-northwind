@@ -4,6 +4,7 @@ metadata:
   name: northwind
   labels:
     app: northwind
+    tier: frontend
 spec:
   scaleTargetRef:
     kind:       Deployment
