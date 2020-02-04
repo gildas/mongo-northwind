@@ -1,0 +1,17 @@
+{{- if and .Values.backend.persistence.enabled (not .Values.backend.persistence.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "chart.fullname" . }}-db
+  labels:
+    tier: backend
+    {{- include "chart.labels" . | nindent 4 }}
+spec:
+  accessModes:
+  {{- range .Values.backend.persistence.accessModes }}
+    - {{ . | quote }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.backend.persistence.size | quote }}
+{{- end -}}
