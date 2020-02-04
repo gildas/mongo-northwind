@@ -1,6 +1,6 @@
 {
   "name": "mongo-northwind",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "Northwind Frontend",
   "author": "Gildas Cherruel &lt;gildas.cherruel@genesys.com&gt;",
   "publisher": "GENESYS",
