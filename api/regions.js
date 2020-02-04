@@ -1,4 +1,4 @@
-import Region from "../models/region";
+import Region from "../models/region"
 
 export function add_routes({ router }) {
   router.get('/regions', async (req, res, next) => {

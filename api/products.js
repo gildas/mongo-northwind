@@ -1,8 +1,8 @@
-import Product from "../models/product";
+import Product from "../models/product"
 
 export function add_routes({ router }) {
   router.get('/products', async (req, res, next) => {
-    let log = req.log.child({ topic: 'routes', controller: 'api.regions', scope: 'list' })
+    let log = req.log.child({ topic: 'routes', controller: 'api.products', scope: 'list' })
 
     try {
       log.info({ query: req.query }, 'Fetching products')
@@ -16,7 +16,7 @@ export function add_routes({ router }) {
   })
 
   router.get('/products/:id', async (req, res, next) => {
-    let log = req.log.child({ topic: 'routes', controller: 'api.regions', scope: 'read' })
+    let log = req.log.child({ topic: 'routes', controller: 'api.products', scope: 'read' })
     try {
       log.info({ query: req.query }, 'Fetching product %s', req.params.id)
       let element = await Product.findById(req.params.id)
