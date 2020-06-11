@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: {{ include "chart.fullname" . }}-db
   labels:
+    app: {{ include "chart.name" . }}-db
     tier: backend
     {{- include "chart.labels" . | nindent 4 }}
 spec:
@@ -12,5 +13,6 @@ spec:
       protocol: TCP
       name: mongodb
   selector:
+    app: {{ include "chart.name" . }}-db
     tier: backend
     {{- include "chart.selectorLabels" . | nindent 4 }}

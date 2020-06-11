@@ -3,17 +3,23 @@ kind: Deployment
 metadata:
   name: {{ include "chart.fullname" . }}-website
   labels:
+    app: {{ include "chart.name" . }}-website
+    version: {{ .Chart.AppVersion | quote }}
     tier: frontend
     {{- include "chart.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
+      app: {{ include "chart.name" . }}-website
+      version: {{ .Chart.AppVersion | quote }}
       tier: frontend
       {{- include "chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
+        app: {{ include "chart.name" . }}-website
+        version: {{ .Chart.AppVersion | quote }}
         tier: frontend
         {{- include "chart.selectorLabels" . | nindent 8 }}
     spec:

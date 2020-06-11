@@ -3,17 +3,23 @@ kind: Deployment
 metadata:
   name: {{ include "chart.fullname" . }}-db
   labels:
+    app: {{ include "chart.name" . }}-db
+    version: {{ .Chart.AppVersion | quote }}
     tier: backend
     {{- include "chart.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.backend.replicaCount }}
   selector:
     matchLabels:
+      app: {{ include "chart.name" . }}-db
+      version: {{ .Chart.AppVersion | quote }}
       tier: backend
       {{- include "chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
+        app: {{ include "chart.name" . }}-db
+        version: {{ .Chart.AppVersion | quote }}
         tier: backend
         {{- include "chart.selectorLabels" . | nindent 8 }}
     spec:

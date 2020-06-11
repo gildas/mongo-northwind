@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: {{ include "chart.fullname" . }}
   labels:
+    app: {{ include "chart.name" . }}-website
     tier: frontend
     {{- include "chart.labels" . | nindent 4 }}
 spec:
@@ -13,5 +14,6 @@ spec:
       protocol: TCP
       name: http
   selector:
+    app: {{ include "chart.name" . }}-website
     tier: frontend
     {{- include "chart.selectorLabels" . | nindent 4 }}
