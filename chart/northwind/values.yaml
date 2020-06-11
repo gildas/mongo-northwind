@@ -13,6 +13,7 @@ frontend:
   imagePullSecrets: []
 
   service:
+    enabled: true
     type: ClusterIP
     port: 80
 
@@ -49,6 +50,7 @@ backend:
   imagePullSecrets: []
 
   service:
+    enabled: true
     type: ClusterIP
     port: 27017
 
