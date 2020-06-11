@@ -1,0 +1,17 @@
+kind:       VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name:      northwind
+  namespace: northwind
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - northwind-gateway
+  http:
+  - match:
+    - uri:
+        exact: /
+    route:
+    - destination:
+        host: northwind
