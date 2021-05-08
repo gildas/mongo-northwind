@@ -22,7 +22,7 @@
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "express-pino-logger": "^5.0.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "mongoose": "^5.10.4",
     "nuxt": "^2.14.5"
   },
